@@ -1,8 +1,8 @@
 import gym
 from gym import spaces
-from gym.envs.registration import EnvSpec
 import numpy as np
 from multiagent.multi_discrete import MultiDiscrete
+
 
 # environment for all agents in the multiagent world
 # currently code assumes that no agents will be created/destroyed at runtime!
@@ -76,6 +76,7 @@ class MultiAgentEnv(gym.Env):
         else:
             self.viewers = [None] * self.n
         self._reset_render()
+
 
     def step(self, action_n):
         obs_n = []

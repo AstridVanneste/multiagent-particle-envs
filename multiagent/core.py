@@ -1,5 +1,6 @@
 import numpy as np
 
+
 # physical/external base state of all entites
 class EntityState(object):
     def __init__(self):
@@ -8,12 +9,14 @@ class EntityState(object):
         # physical velocity
         self.p_vel = None
 
+
 # state of agents (including communication and internal/mental state)
 class AgentState(EntityState):
     def __init__(self):
         super(AgentState, self).__init__()
         # communication utterance
         self.c = None
+
 
 # action of the agent
 class Action(object):
@@ -22,6 +25,7 @@ class Action(object):
         self.u = None
         # communication action
         self.c = None
+
 
 # properties and state of physical world entity
 class Entity(object):
@@ -50,10 +54,12 @@ class Entity(object):
     def mass(self):
         return self.initial_mass
 
+
 # properties of landmark entities
 class Landmark(Entity):
      def __init__(self):
         super(Landmark, self).__init__()
+
 
 # properties of agent entities
 class Agent(Entity):
@@ -77,6 +83,7 @@ class Agent(Entity):
         self.action = Action()
         # script behavior to execute
         self.action_callback = None
+
 
 # multi-agent world
 class World(object):
