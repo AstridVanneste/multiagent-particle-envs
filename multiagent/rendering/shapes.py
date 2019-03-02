@@ -1,8 +1,19 @@
+from gym.utils import reraise
+
+from multiagent.rendering.attributes import Color
+
+try:
+    from pyglet.gl import *
+except ImportError as e:
+    reraise(prefix="Error occured while running `from pyglet.gl import *`",
+            suffix="HINT: make sure you have OpenGL install. On Ubuntu, you can run 'apt-get install python-opengl'."
+                   " If you're running on a server, you may need a virtual frame buffer; something like this should "
+                   "work: 'xvfb-run -s \"-screen 0 1400x900x24\" python <your_script.py>'")
 
 
 class Geom(object):
     def __init__(self):
-        self._color=Color((0, 0, 0, 1.0))
+        self._color = Color((0, 0, 0, 1.0))
         self.attrs = [self._color]
 
     def render(self):
@@ -27,7 +38,7 @@ class Point(Geom):
         Geom.__init__(self)
 
     def render1(self):
-        glBegin(GL_POINTS) # draw point
+        glBegin(GL_POINTS)  # draw point
         glVertex3f(0.0, 0.0, 0.0)
         glEnd()
 

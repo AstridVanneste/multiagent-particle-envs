@@ -8,6 +8,8 @@ except ImportError as e:
                    " If you're running on a server, you may need a virtual frame buffer; something like this should "
                    "work: 'xvfb-run -s \"-screen 0 1400x900x24\" python <your_script.py>'")
 
+RAD2DEG = 57.29577951308232
+
 
 class Attr(object):
     def enable(self):
@@ -45,6 +47,7 @@ class Transform(Attr):
 class Color(Attr):
     def __init__(self, vec4):
         self.vec4 = vec4
+
     def enable(self):
         glColor4f(*self.vec4)
 
