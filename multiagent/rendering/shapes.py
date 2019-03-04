@@ -1,6 +1,6 @@
 from gym.utils import reraise
 
-from multiagent.rendering.attributes import Color
+from multiagent.rendering.attributes import Color, LineWidth
 
 try:
     from pyglet.gl import *
@@ -62,6 +62,7 @@ class FilledPolygon(Geom):
         for p in self.v:
             glVertex3f(p[0], p[1],0)  # draw each vertex
         glEnd()
+
 
 class Compound(Geom):
     def __init__(self, gs):

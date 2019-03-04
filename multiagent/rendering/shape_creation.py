@@ -3,6 +3,8 @@ import math
 from multiagent.rendering.attributes import Transform
 from multiagent.rendering.shapes import *
 
+import pyglet
+
 
 def make_circle(radius=10, res=30, filled=True):
     points = []
@@ -34,3 +36,7 @@ def make_capsule(length, width):
     circ1.add_attr(Transform(translation=(length, 0)))
     geom = Compound([box, circ0, circ1])
     return geom
+
+
+def make_label(text):
+    return pyglet.text.Label(text, anchor_x='center', anchor_y='center', x=0, y=0)

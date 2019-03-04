@@ -57,6 +57,7 @@ class Viewer(object):
         self.window.on_close = self.window_closed_by_user
         self.geoms = []
         self.onetime_geoms = []
+        self.labels = []
         self.transform = Transform()
 
         glEnable(GL_BLEND)
@@ -87,6 +88,9 @@ class Viewer(object):
     def add_onetime(self, geom):
         self.onetime_geoms.append(geom)
 
+    def add_label(self, label):
+        self.labels.append(label)
+
     def render(self, return_rgb_array=False):
         glClearColor(1, 1, 1, 1)
         self.window.clear()
@@ -97,6 +101,8 @@ class Viewer(object):
             geom.render()
         for geom in self.onetime_geoms:
             geom.render()
+        for label in self.labels:
+            label.draw()
         self.transform.disable()
         arr = None
         if return_rgb_array:
