@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-import os,sys
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
+import os
+import sys
+import multiagent.scenarios as scenarios
 import argparse
 
 from multiagent.environment import MultiAgentEnv
 from multiagent.policy import InteractivePolicy
-import multiagent.scenarios as scenarios
+
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 if __name__ == '__main__':
     # parse arguments

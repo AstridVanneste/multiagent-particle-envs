@@ -20,7 +20,7 @@ class Attr(object):
 
 
 class Transform(Attr):
-    def __init__(self, translation=(0.0, 0.0), rotation=0.0, scale=(1,1)):
+    def __init__(self, translation=(0.0, 0.0), rotation=0.0, scale=(1, 1)):
         self.set_translation(*translation)
         self.set_rotation(rotation)
         self.set_scale(*scale)

@@ -49,18 +49,18 @@ class FilledPolygon(Geom):
         self.v = v
 
     def render1(self):
-        if   len(self.v) == 4 : glBegin(GL_QUADS)
-        elif len(self.v)  > 4 : glBegin(GL_POLYGON)
+        if len(self.v) == 4: glBegin(GL_QUADS)
+        elif len(self.v) > 4: glBegin(GL_POLYGON)
         else: glBegin(GL_TRIANGLES)
         for p in self.v:
-            glVertex3f(p[0], p[1],0)  # draw each vertex
+            glVertex3f(p[0], p[1], 0)  # draw each vertex
         glEnd()
 
         color = (self._color.vec4[0] * 0.5, self._color.vec4[1] * 0.5, self._color.vec4[2] * 0.5, self._color.vec4[3] * 0.5)
         glColor4f(*color)
         glBegin(GL_LINE_LOOP)
         for p in self.v:
-            glVertex3f(p[0], p[1],0)  # draw each vertex
+            glVertex3f(p[0], p[1], 0)  # draw each vertex
         glEnd()
 
 
