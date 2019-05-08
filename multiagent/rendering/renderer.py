@@ -4,6 +4,8 @@ import math
 import sys
 import multiagent
 
+from pygame import gfxdraw
+
 
 class Renderer:
     def __init__(self, resx, resy):
@@ -16,14 +18,17 @@ class Renderer:
 
         self.font = pg.font.SysFont('Arial', 24)
 
-    def render(self, entities):
+    def render(self, entities, name):
         if self.screen is None:
             self.screen = pg.display.set_mode((self.resx, self.resy))
 
         self.screen.fill([255, 255, 255])
 
-        self.draw_entities(entities)
         self.draw_connections(entities)
+        self.draw_entities(entities)
+
+        textsurface = self.font.render(name, True, (0, 0, 0))
+        self.screen.blit(textsurface, (10, 10))
 
         pg.display.update()
 
@@ -44,7 +49,8 @@ class Renderer:
                 color.append(int(round(entity.color[i] * 255)))
 
             if type(entity) == multiagent.core.Agent:
-                pg.draw.circle(self.screen, color, pos, size)
+                pg.gfxdraw.aacircle(self.screen, pos[0], pos[1], size, color)
+                pg.gfxdraw.filled_circle(self.screen, pos[0], pos[1], size, color)
 
             else:
                 pg.draw.rect(self.screen, color, (pos[0] - size, pos[1] - size, 2 * size, 2 * size))
@@ -58,9 +64,9 @@ class Renderer:
                     agent_pos = self.get_pos(agent)
                     landmark_pos = self.get_pos(landmark)
 
-                    pg.draw.line(self.screen, (128, 128, 128), agent_pos, landmark_pos, 2)
+                    pg.draw.aaline(self.screen, (128, 128, 128), agent_pos, landmark_pos, 2)
 
-                    textsurface = self.font.render(str(self.calc_distance(agent_pos, landmark_pos)), False, (128, 128, 128))
+                    textsurface = self.font.render(str(self.calc_distance(agent_pos, landmark_pos)), True, (80, 80, 80))
                     self.screen.blit(textsurface, self.calc_middle(agent_pos, landmark_pos))
 
     def calc_distance(self, pos1, pos2):

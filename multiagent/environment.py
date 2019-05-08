@@ -200,8 +200,8 @@ class MultiAgentEnv(gym.Env):
         self.render_geoms_xform = None
 
     # render environment
-    def render(self, mode='human'):
-        self.renderer.render(self.world.entities)
+    def render(self, name, mode='human'):
+        self.renderer.render(self.world.entities, name)
 
     # create receptor field locations in local coordinate frame
     def _make_receptor_locations(self, agent):
